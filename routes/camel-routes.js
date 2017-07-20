@@ -8,10 +8,16 @@ const router = express.Router();
 
 
 router.post('/api/camels', (req, res, next) => {
+    if (!req.user) {
+      res.status(401).json({ message: 'Log in to make camels. 🐫' });
+      return;
+    }
+
     const theCamel = new CamelModel({
       name: req.body.camelName,
       color: req.body.camelColor,
-      humps: req.body.camelHumps
+      humps: req.body.camelHumps,
+      user: req.user._id
     });
 
     theCamel.save((err) => {
@@ -33,8 +39,8 @@ router.post('/api/camels', (req, res, next) => {
 
         // Success!
         res.status(200).json(theCamel);
-    });
-});
+    }); // close theCamel.save()
+}); // close router.post('/api/camels', ...
 
 
 module.exports = router;
