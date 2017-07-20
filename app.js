@@ -8,6 +8,7 @@ const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
 const session      = require('express-session');
 const passport     = require('passport');
+const cors         = require('cors');
 
 
 require('dotenv').config();
@@ -43,6 +44,11 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors({
+  credentials: true,                   // allow other domains to send cookies
+  origin: [ 'http://localhost:4200' ]  // these are the domains that are allowed
+}));
+
 
 
 // ROUTES ----------------------------------------------------------------------
@@ -55,6 +61,8 @@ app.use('/', myAuthRoutes);
 const myCamelRoutes = require('./routes/camel-routes');
 app.use('/', myCamelRoutes);
 // -----------------------------------------------------------------------------
+
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
