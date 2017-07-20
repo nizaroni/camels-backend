@@ -51,6 +51,9 @@ app.use('/', index);
 
 const myAuthRoutes = require('./routes/auth-routes');
 app.use('/', myAuthRoutes);
+
+const myCamelRoutes = require('./routes/camel-routes');
+app.use('/', myCamelRoutes);
 // -----------------------------------------------------------------------------
 
 // catch 404 and forward to error handler
