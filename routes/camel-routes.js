@@ -43,4 +43,28 @@ router.post('/api/camels', (req, res, next) => {
 }); // close router.post('/api/camels', ...
 
 
+router.get('/api/camels', (req, res, next) => {
+    if (!req.user) {
+      res.status(401).json({ message: 'Log in to see camels. 🐫' });
+      return;
+    }
+
+    CamelModel
+      .find()
+
+      // retrieve all the info of the owners (needs "ref" in model)
+      .populate('user', { encryptedPassword: 0 })
+      // don't retrieve "encryptedPassword" though
+
+      .exec((err, allTheCamels) => {
+          if (err) {
+            res.status(500).json({ message: 'Camel find went to 💩' });
+            return;
+          }
+
+          res.status(200).json(allTheCamels);
+      });
+}); // close router.get('/api/camels', ...
+
+
 module.exports = router;
