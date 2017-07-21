@@ -37,6 +37,9 @@ router.post('/api/camels', (req, res, next) => {
           return;
         }
 
+        // Put the full user info here for Angular
+        theCamel.user = req.user;
+
         // Success!
         res.status(200).json(theCamel);
     }); // close theCamel.save()
