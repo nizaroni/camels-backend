@@ -25,7 +25,8 @@ const myCamelSchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true,
       ref: 'User' // "ref" is the string name of a model that the ID refers to
-    }             // you NEED "ref" to use "populate()"
+    },            // you NEED "ref" to use "populate()"
+    picture: { type: String }
   },
   {
     timestamps: true

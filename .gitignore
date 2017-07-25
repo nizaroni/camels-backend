@@ -31,3 +31,6 @@ npm-debug.log
 
 # Don't commit .env file since it contains secret stuff
 .env
+
+# Don't commit uploads
+public/uploads
