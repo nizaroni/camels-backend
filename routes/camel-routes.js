@@ -14,7 +14,7 @@ const myUploader = multer({
 
 router.post(
   '/api/camels',
-  myUploader.single('file'),
+  myUploader.single('camelPicture'),
   (req, res, next) => {
       if (!req.user) {
         res.status(401).json({ message: 'Log in to make camels. 🐫' });
