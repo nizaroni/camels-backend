@@ -64,6 +64,13 @@ app.use('/', myCamelRoutes);
 
 
 
+app.use((req, res, next) => {
+    // If no routes match, send them the Angular HTML.
+    res.sendFile(__dirname + '/public/index.html');
+});
+
+
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
