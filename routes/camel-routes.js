@@ -50,6 +50,7 @@ router.post(
           }
 
           // Put the full user info here for Angular
+          req.user.encryptedPassword = undefined;
           theCamel.user = req.user;
 
           // Success!
